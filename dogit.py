@@ -2,7 +2,6 @@
 from utilz2 import *
 args=dict(
     task='',
-    branch='master',
     repos=[
         'projutils',
         'kdev',
@@ -14,7 +13,7 @@ args=dict(
     ],
 )
 p=getparser(**args)
-gacp="git add .;git commit -m 'gacp';git push origin "+p.branch
+gacp="git add .;git commit -m 'gacp';git push origin "
 for f in p.repos:
     if p.task=='pull':
         os_system('cd; cd',f,'; pwd; git pull',e=1,a=1)

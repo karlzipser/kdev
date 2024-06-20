@@ -9,6 +9,7 @@ args=dict(
         'tac_attn',
         'tac_ideal',
         'kmodule',
+        'kllm',
         'utilz2.2.102',
     ],
 )

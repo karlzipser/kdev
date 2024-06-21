@@ -116,4 +116,49 @@ if False:
     print("String list:", string_list)
 
 
+if False:
+  def print_tree(d, indent='', is_last=True):
+      """ Recursively prints a dictionary as a tree with box drawing characters """
+      box_chars = {
+          'updown': '│  ',
+          'branch': '├──',
+          'corner': '└──',
+          'space': '   ',
+      }
+
+      keys = list(d.keys())
+      for i, key in enumerate(keys):
+          is_current_last = (i == len(keys) - 1)
+          connector = box_chars['corner'] if is_current_last else box_chars['branch']
+          
+          print(indent + connector + str(key))
+          
+          value = d[key]
+          if isinstance(value, dict):
+              new_indent = indent + (box_chars['space'] if is_current_last else box_chars['updown'])
+              print_tree(value, new_indent, is_last=is_current_last)
+          else:
+              value_indent = indent + (box_chars['space'] if is_current_last else box_chars['updown'])
+              print(value_indent + box_chars['corner'] + str(value))
+
+  # Example dictionary
+  example_dict = {
+      'root': {
+          'child1': {
+              'subchild1': 'value1',
+              'subchild2': 'value2',
+          },
+          'child2': 'value3',
+          'child3': {
+              'subchild3': {
+                  'subsubchild1': 'value4',
+                  'subsubchild2': 'value4',
+                  'subsubchild3': 'value4',
+              }
+          }
+      }
+  }
+
+  # Print the dictionary as a tree
+  print_tree(example_dict)
 #EOF
